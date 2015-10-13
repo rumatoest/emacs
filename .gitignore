@@ -1,0 +1,12 @@
+
+#General patterns
+*~
+.*
+!.gitignore
+
+#Some files
+ac-comphist.dat
+
+#Some dirs
+/auto-save-list
+/elpa
