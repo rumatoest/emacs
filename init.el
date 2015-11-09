@@ -1,3 +1,19 @@
+(defun load-directory (directory)
+  "Load recursively all `.el' files in DIRECTORY."
+  (dolist (element (directory-files-and-attributes directory nil nil nil))
+    (let* ((path (car element))
+           (fullpath (concat directory "/" path))
+           (isdir (car (cdr element)))
+           (ignore-dir (or (string= path ".") (string= path ".."))))
+      (cond
+       ((and (eq isdir t) (not ignore-dir))
+        (load-directory fullpath))
+       ((and (eq isdir nil) (string= (substring path -3) ".el"))
+        (load (file-name-sans-extension fullpath)))))))
+
+(load-directory "~/.emacs.d/elisp")
+
+
 (setq package-list '(drag-stuff dirtree jedi))
 
 ;; You might already have this line
@@ -23,7 +39,10 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+
+
 ;CONFIGURE PACKAGES
+(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
 (drag-stuff-global-mode t)
 ;(add-to-list 'drag-stuff-except-modes 'conflicting-mode)
@@ -39,3 +58,4 @@
 (add-hook 'python-mode-hook 'jedi:ac-setup)  ;autocmplete only
 ;add hokey for jedi compile
 (add-hook 'python-mode-hook '(lambda() (define-key 'python-mode-map (kbd "<C-tab>") 'jedi:complete)))
+(put 'upcase-region 'disabled nil)
