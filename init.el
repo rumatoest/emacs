@@ -1,3 +1,4 @@
+;; Load configurations from subdir
 (defun load-directory (directory)
   "Load recursively all `.el' files in DIRECTORY."
   (dolist (element (directory-files-and-attributes directory nil nil nil))
@@ -13,12 +14,21 @@
 
 (load-directory "~/.emacs.d/elisp")
 
+;; emacs config
 
+;; http://www.emacswiki.org/emacs/InteractivelyDoThings
+(require 'ido) 
+(ido-mode t)
+
+; alternative to: alias emacs='emacs --no-splash'
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+
+
+;; PACKAGES
 (setq package-list '(drag-stuff dirtree jedi))
-
 ;; You might already have this line
 (require 'package)
-
 ; list the repositories containing them
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
@@ -30,11 +40,11 @@
 
 (package-initialize) ;; You might already have this line
 
-; fetch the list of packages available 
+;; fetch the list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
+;; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
