@@ -4,7 +4,10 @@
 !.gitignore
 
 #Some files
+ido.last
+session.*
 ac-comphist.dat
+
 
 #Some dirs
 /auto-save-list
