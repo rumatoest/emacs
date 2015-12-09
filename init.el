@@ -53,6 +53,8 @@
 
 
 ;CONFIGURE PACKAGES
+(global-git-commit-mode t)
+
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
 (drag-stuff-global-mode t)
