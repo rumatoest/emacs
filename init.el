@@ -25,8 +25,9 @@
 (setq inhibit-startup-message t)
 
 
-;; PACKAGES
-(setq package-list '(drag-stuff dirtree jedi))
+;; PACKAGES TO INSTALL
+(setq package-list '(drag-stuff dirtree jedi magit))
+
 ;; You might already have this line
 (require 'package)
 ; list the repositories containing them

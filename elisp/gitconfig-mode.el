@@ -123,8 +123,7 @@
 
 ;;;###autoload
 (dolist (pattern '("/\\.gitconfig\\'" "/\\.git/config\\'"
-                   "/git/config\\'"   "/\\.gitmodules\\'"
-                   "COMMIT_EDITMSG"))
+                   "/git/config\\'"   "/\\.gitmodules\\'"))
   (add-to-list 'auto-mode-alist (cons pattern 'gitconfig-mode)))
 
 (provide 'gitconfig-mode)
