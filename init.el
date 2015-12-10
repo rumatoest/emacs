@@ -1,4 +1,5 @@
-;; Load configurations from subdir
+;; DEFINE COMMON FUNCTIONS
+
 (defun load-directory (directory)
   "Load recursively all `.el' files in DIRECTORY."
   (dolist (element (directory-files-and-attributes directory nil nil nil))
@@ -12,65 +13,36 @@
        ((and (eq isdir nil) (string= (substring path -3) ".el"))
         (load (file-name-sans-extension fullpath)))))))
 
-(load-directory (concat user-emacs-directory "elisp")) ; configuration files to load
-(add-to-list 'load-path (concat user-emacs-directory "elib")) ; library files
-
-;; emacs config
-
-;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-(require 'ido) 
-(ido-mode t)
-
-; alternative to: alias emacs='emacs --no-splash'
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-message t)
-
-
-;; PACKAGES TO INSTALL
-(setq package-list '(drag-stuff dirtree jedi))
-;; magit
-
-;; You might already have this line
+;; CONFIGURE PACKAGES
 (require 'package)
-; list the repositories containing them
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
+; list the repositories  ;;("gnu" . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
-(package-initialize) ;; You might already have this line
+(package-initialize)
 
-;; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
+;;(package-refresh-contents)
+(when (not package-archive-contents)
+    (package-refresh-contents))
 
-;; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+;; Instal package if not available
+(defun ensure-packages-installed (packages)
+  (dolist (p packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
 
+;; SETUP PATHS
+(add-to-list 'load-path (concat user-emacs-directory "lisp"))
+(load (concat user-emacs-directory "loaddefs.el"))
+;; configs to loa
+(load (concat user-emacs-directory "config.el"))
+(ini-load-all)
 
-
-;; CONFIGURE PACKAGES
-;(global-git-commit-mode t)
-
-(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
-
-(drag-stuff-global-mode t)
-;(add-to-list 'drag-stuff-except-modes 'conflicting-mode)
-
-(global-set-key [f8] 'neotree-toggle)
-
-(autoload 'dirtree "dirtree" "Add directory to tree view" t)
-
-;JEDI 
-;http://tkf.github.io/emacs-jedi/latest/#keybinds
-
-;(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook 'jedi:ac-setup)  ;autocmplete only
-;add hokey for jedi compile
-(add-hook 'python-mode-hook '(lambda() (define-key 'python-mode-map (kbd "<C-tab>") 'jedi:complete)))
-(put 'upcase-region 'disabled nil)
+;; no start screen
+;; alternative to: alias emacs='emacs --no-splash'
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
