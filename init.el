@@ -12,7 +12,8 @@
        ((and (eq isdir nil) (string= (substring path -3) ".el"))
         (load (file-name-sans-extension fullpath)))))))
 
-(load-directory "~/.emacs.d/elisp")
+(load-directory (concat user-emacs-directory "elisp")) ; configuration files to load
+(add-to-list 'load-path (concat user-emacs-directory "elib")) ; library files
 
 ;; emacs config
 
@@ -26,7 +27,8 @@
 
 
 ;; PACKAGES TO INSTALL
-(setq package-list '(drag-stuff dirtree jedi magit))
+(setq package-list '(drag-stuff dirtree jedi))
+;; magit
 
 ;; You might already have this line
 (require 'package)
@@ -52,8 +54,8 @@
 
 
 
-;CONFIGURE PACKAGES
-(global-git-commit-mode t)
+;; CONFIGURE PACKAGES
+;(global-git-commit-mode t)
 
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
