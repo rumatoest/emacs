@@ -8,6 +8,8 @@
 (require 'duplicate-line)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
+(require 'reverse-input) ; Just add provided function to the scope
+
 ;; FROM PACKAGES
 ;; Drag via alt up/down
 (ensure-packages-installed '(drag-stuff))
