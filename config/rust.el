@@ -4,3 +4,6 @@
 
 (autoload 'rust-mode "rust-mode" "Rust language mode" t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
+(custom-set-variables
+ '(rust-rustfmt-bin "~/.cargo/bin/rustfmt"))

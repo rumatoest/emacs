@@ -4,7 +4,6 @@
 
 (ensure-packages-installed '(racer company-racer))
 
-
 ;; Assume that all crated installed locally
 (setq racer-cmd "~/.cargo/bin/racer")
 
