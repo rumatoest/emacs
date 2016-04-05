@@ -7,3 +7,7 @@
 
 (custom-set-variables
  '(rust-rustfmt-bin "~/.cargo/bin/rustfmt"))
+
+;; Flycheck for Rust
+(ensure-packages-installed '(flycheck-rust))
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
