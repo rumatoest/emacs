@@ -10,7 +10,6 @@
 (setq ido-auto-merge-work-directories-length -1)
 (setq ido-use-virtual-buffers t)
 
-
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -23,7 +22,7 @@
 
 (require 'duplicate-line)
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
-(global-set-key (kbd "C-c d") 'delete-current-line-or-region)
+(global-set-key (kbd "C-c k") 'delete-current-line-or-region)
 
 (require 'reverse-input) ; Just add provided function to the scope
 
@@ -32,4 +31,18 @@
 (ensure-packages-installed '(drag-stuff))
 (drag-stuff-global-mode t)
 ;(add-to-list 'drag-stuff-except-modes 'conflicting-mode)
+
+;;NEOTREE
+(ensure-packages-installed '(neotree))
+(global-set-key [f8] 'neotree-toggle)
+;;(ensure-packages-installed `(neotree))
+;; (autoload 'dirtree "dirtree" "Add directory to tree view" t)
+
+;;SIDEBAR in windows mode
+(ensure-packages-installed '(sr-speedbar))
+(require 'sr-speedbar)
+(global-set-key (kbd "s-s") 'sr-speedbar-toggle)
+
+;;TABBAR
+(ensure-packages-installed '(tabbar))
 
