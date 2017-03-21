@@ -57,6 +57,7 @@
  '(ansi-color-names-vector
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(custom-enabled-themes (quote (deeper-blue)))
+ '(line-move-visual t)
  '(rust-rustfmt-bin "~/.cargo/bin/rustfmt"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

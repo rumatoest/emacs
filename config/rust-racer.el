@@ -8,7 +8,7 @@
 (setq racer-cmd "~/.cargo/bin/racer")
 
 ;; And Rust installed globally
-;; (setq racer-rust-src-path "/usr/local/src/rust/src/")
+(setq racer-rust-src-path "/usr/local/src/rust/src/")
 
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)

@@ -30,6 +30,8 @@
 ;; Drag via alt up/down
 (ensure-packages-installed '(drag-stuff))
 (drag-stuff-global-mode t)
+(global-set-key [M-up] 'drag-stuff-up)
+(global-set-key [M-down] 'drag-stuff-down)
 ;(add-to-list 'drag-stuff-except-modes 'conflicting-mode)
 
 ;;NEOTREE
@@ -41,7 +43,8 @@
 ;;SIDEBAR in windows mode
 (ensure-packages-installed '(sr-speedbar))
 (require 'sr-speedbar)
-(global-set-key (kbd "s-s") 'sr-speedbar-toggle)
+(global-set-key (kbd "s-s") 'sr-speedbar-toggle) ; Meta+S
+(custom-set-variables '(speedbar-show-unknown-files t))
 
 ;;TABBAR
 (ensure-packages-installed '(tabbar))
