@@ -30,9 +30,10 @@
 ;; Drag via alt up/down
 (ensure-packages-installed '(drag-stuff))
 (drag-stuff-global-mode t)
-(global-set-key [M-up] 'drag-stuff-up)
-(global-set-key [M-down] 'drag-stuff-down)
-;(add-to-list 'drag-stuff-except-modes 'conflicting-mode)
+(drag-stuff-define-keys)
+;(global-set-key [M-up] 'drag-stuff-up)
+;(global-set-key [M-down] 'drag-stuff-down)
+'(add-to-list 'drag-stuff-except-modes 'conflicting-mode)
 
 ;;NEOTREE
 (ensure-packages-installed '(neotree))
